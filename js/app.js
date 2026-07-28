@@ -27,7 +27,9 @@ async function semearSeVazio() {
 
 function atualizarNav() {
   const hash = location.hash || "#/exercicios";
-  const sec = hash.indexOf("#/exercicios") === 0 ? "#/exercicios" : hash;
+  let sec = hash;
+  if (hash.indexOf("#/exercicios") === 0) sec = "#/exercicios";
+  else if (hash.indexOf("#/treinos") === 0) sec = "#/treinos";
   document.querySelectorAll("nav.tab a").forEach((a) => {
     const ativo = a.getAttribute("href") === sec;
     a.classList.toggle("ativo", ativo);
@@ -42,6 +44,12 @@ async function render() {
   await semearSeVazio();
   const hash = location.hash || "#/exercicios";
   if (hash.startsWith("#/exercicios/")) return renderExercicioDetail(hash.split("/")[2]);
+  if (hash === "#/treinos/gerar") return renderTreinoGerarForm();
+  let m = hash.match(/^#\/treinos\/(\d+)\/editar$/);
+  if (m) return renderTreinoEditForm(m[1]);
+  m = hash.match(/^#\/treinos\/(\d+)$/);
+  if (m) return renderTreinoDetail(m[1]);
+  if (hash === "#/treinos") return renderTreinos();
   if (hash === "#/dados") return renderDados();
   return renderExercicios();
 }

@@ -1,6 +1,7 @@
-const CACHE = "calisthenics-v4";
+const CACHE = "calisthenics-v5";
 const ASSETS = [
-  "./", "./index.html", "./css/styles.css", "./js/db.js", "./js/app.js",
+  "./", "./index.html", "./css/styles.css",
+  "./js/db.js", "./js/gerador.js", "./js/timer.js", "./js/treino.js", "./js/app.js",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
   "./export.json",
 ];

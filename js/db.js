@@ -87,6 +87,16 @@ const DB = {
 const CATEGORIAS = ["empurrar", "puxar", "pernas", "core"];
 const NIVEIS = ["iniciante", "intermedio", "avancado"];
 
+const FASES = ["aquecimento", "treino", "alongamento"];
+const ROTULOS_FASE = { aquecimento: "🔥 Aquecimento", treino: "💪 Treino", alongamento: "🧘 Alongamento" };
+const CATEGORIAS_TREINO = [
+  ["empurrar", "Push (empurrar)"],
+  ["puxar", "Pull (puxar)"],
+  ["pernas", "Legs (pernas)"],
+  ["core", "Core"],
+  ["all", "All body"],
+];
+
 // ------- self-check (corre só em Node) -------
 if (typeof window === "undefined" && typeof process !== "undefined") {
   const assert = (c, m) => { if (!c) { console.error("FALHOU:", m); process.exit(1); } };
