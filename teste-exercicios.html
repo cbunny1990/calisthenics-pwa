@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teste UX — Exercícios (PWA vanilla)</title>
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .ex-card { display: flex; flex-direction: column; gap: 8px; }
+  .ex-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .ex-imgs img { width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--slate-100); border-radius: 10px; }
+  .ex-cat { display: flex; gap: 6px; align-items: center; }
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>💪 Exercícios <span class="badge-off" style="margin-left:auto">TESTE UX — sem Tailwind CDN</span></h1></div></header>
+<div class="wrap">
+  <div class="head"><h2>Biblioteca</h2><span class="muted">8 de 27 (amostra)</span></div>
+  <div class="pills" style="margin-bottom:14px">
+    <span class="pill on">Todos</span>
+    <span class="pill">Empurrar</span>
+    <span class="pill">Puxar</span>
+    <span class="pill">Pernas</span>
+    <span class="pill">Core</span>
+  </div>
+  <ul class="list" id="lista"></ul>
+</div>
+<script>
+fetch('test-data.json').then(r=>r.json()).then(dados=>{
+  const lista = document.getElementById('lista');
+  lista.innerHTML = dados.map(e => `
+    <li class="card ex-card">
+      <div class="ex-cat">
+        <span class="t" style="font-weight:700;font-size:16px">${e.titulo}</span>
+        <span class="tag marca" style="margin-left:auto">${e.nivel ?? ''}</span>
+        <span class="tag">${e.categoria ?? ''}</span>
+      </div>
+      <div class="ex-imgs">
+        <img src="${e.imagem_url}" alt="início" loading="lazy">
+        <img src="${e.imagem_url_fim ?? e.imagem_url}" alt="fim" loading="lazy">
+      </div>
+    </li>
+  `).join('');
+}).catch(err => {
+  document.getElementById('lista').innerHTML = '<li class="empty">Erro a carregar dados de teste: '+err+'</li>';
+});
+</script>
+</body>
+</html>

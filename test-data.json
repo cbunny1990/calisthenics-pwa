@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "titulo": "Flexão de joelhos",
+    "categoria": "empurrar",
+    "nivel": "iniciante",
+    "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/knee-push-ups-start.webp",
+    "imagem_url_fim": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/knee-push-ups-peak.webp"
+  },
+  {
+    "id": 2,
+    "titulo": "Flexão normal",
+    "categoria": "empurrar",
+    "nivel": "intermedio",
+    "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+    "imagem_url_fim": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/1.jpg"
+  },
+  {
+    "id": 3,
+    "titulo": "Flexão diamante",
+    "categoria": "empurrar",
+    "nivel": "intermedio",
+    "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-Ups_-_Close_Triceps_Position/0.jpg",
+    "imagem_url_fim": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-Ups_-_Close_Triceps_Position/1.jpg"
+  },
+  {
+    "id": 4,
+    "titulo": "Flexão arqueiro",
+    "categoria": "empurrar",
+    "nivel": "avancado",
+    "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/archer-push-ups-start.webp",
+    "imagem_url_fim": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/archer-push-ups-peak.webp"
+  },
+  {
+    "id": 5,
+    "titulo": "Pseudo planche push-up",
+    "categoria": "empurrar",
+    "nivel": "avancado",
+    "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/pseudo-planche-push-ups-start.webp",
+    "imagem_url_fim": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/pseudo-planche-push-ups-peak.webp"
+  },
+  {
+    "id": 6,
+    "titulo": "Flexão a um braço (progressão)",
+    "categoria": "empurrar",
+    "nivel": "elite",
+    "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single-Arm_Push-Up/0.jpg",
+    "imagem_url_fim": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single-Arm_Push-Up/1.jpg"
+  },
+  {
+    "id": 7,
+    "titulo": "Remada invertida (inverted row)",
+    "categoria": "puxar",
+    "nivel": "iniciante",
+    "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/inverted-row-start.webp",
+    "imagem_url_fim": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/inverted-row-peak.webp"
+  },
+  {
+    "id": 8,
+    "titulo": "Dominada negativa",
+    "categoria": "puxar",
+    "nivel": "iniciante",
+    "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/negative-pull-ups-start.webp",
+    "imagem_url_fim": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/negative-pull-ups-peak.webp"
+  }
+]
