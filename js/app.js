@@ -264,7 +264,13 @@ async function renderDados() {
         const res = await fetch("export.json?" + Date.now());
         if (!res.ok) throw new Error("HTTP " + res.status);
         const payload = await res.json();
-        for (const ex of payload.dados.exercicios || []) await DB.atualizar("exercicios", ex);
+        for (const ex of payload.dados.exercicios || []) {
+          const local = await DB.obter("exercicios", ex.id);
+          // Nunca substituir uma foto carregada manualmente (data:...) pela do servidor.
+          const imagemUrl = local?.imagem_url?.startsWith("data:") ? local.imagem_url : ex.imagem_url;
+          const imagemUrlFim = local?.imagem_url_fim?.startsWith("data:") ? local.imagem_url_fim : ex.imagem_url_fim;
+          await DB.atualizar("exercicios", { ...ex, imagem_url: imagemUrl, imagem_url_fim: imagemUrlFim });
+        }
         alert("Biblioteca de exercícios atualizada.");
         renderDados();
       } catch (err) {
