@@ -64,7 +64,7 @@ function tpl(strings, ...vals) { return strings.reduce((s, str, i) => s + str + 
 
 async function renderExercicios() {
   try {
-    const todos = await DB.listar("exercicios");
+    const todos = (await DB.listar("exercicios")).sort((a, b) => a.titulo.localeCompare(b.titulo, "pt"));
     const filtro = window._filtroCategoria || null;
     const lista = filtro ? todos.filter(e => e.categoria === filtro) : todos;
     app.innerHTML = tpl`

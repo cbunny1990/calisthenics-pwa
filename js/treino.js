@@ -55,7 +55,7 @@ async function renderTreinoGerarForm() {
           </select>
         </label>
         <label class="field"><span>Duração (min)</span>
-          <input type="number" name="duracao_min" value="45" min="5" required>
+          <input type="number" name="duracao_min" value="60" min="5" required>
         </label>
         <label class="field"><span>Equipamento</span>
           <select name="equipamento">
