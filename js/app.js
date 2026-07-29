@@ -95,8 +95,8 @@ function exCard(e) {
           <span class="tag marca" style="margin-left:auto">${esc(e.nivel ?? "")}</span>
         </div>
         <div class="ex-imgs">
-          <img src="${e.imagem_url || ""}" alt="${esc(e.titulo)} — início" loading="lazy" onerror="this.style.visibility='hidden'">
-          <img src="${e.imagem_url_fim || e.imagem_url || ""}" alt="${esc(e.titulo)} — fim" loading="lazy" onerror="this.style.visibility='hidden'">
+          ${e.imagem_url ? `<img src="${e.imagem_url}" alt="${esc(e.titulo)} — início" loading="lazy" onerror="this.style.visibility='hidden'">` : ""}
+          ${e.imagem_url_fim ? `<img src="${e.imagem_url_fim}" alt="${esc(e.titulo)} — fim" loading="lazy" onerror="this.style.visibility='hidden'">` : ""}
         </div>
       </a>
     </li>
@@ -114,8 +114,8 @@ async function renderExercicioDetail(id) {
         <h2>${esc(e.titulo)}</h2>
         <div class="pills" style="margin:8px 0"><span class="tag marca">${esc(e.nivel ?? "")}</span><span class="tag">${esc(e.categoria ?? "")}</span>${e.usa_equipamento ? `<span class="tag">🏋️ precisa de equipamento</span>` : ""}</div>
         <div class="ex-imgs" style="margin-bottom:14px">
-          <img src="${e.imagem_url || ""}" alt="${esc(e.titulo)} — início">
-          <img src="${e.imagem_url_fim || e.imagem_url || ""}" alt="${esc(e.titulo)} — fim">
+          ${e.imagem_url ? `<img src="${e.imagem_url}" alt="${esc(e.titulo)} — início">` : ""}
+          ${e.imagem_url_fim ? `<img src="${e.imagem_url_fim}" alt="${esc(e.titulo)} — fim">` : ""}
         </div>
         ${e.descricao ? `<p>${esc(e.descricao)}</p>` : ""}
         ${e.video_url ? `<div class="spacer"></div><a class="btn ghost" href="${esc(e.video_url)}" target="_blank">▶ Ver vídeo</a>` : ""}
@@ -174,9 +174,9 @@ async function renderExercicioForm(id) {
           <span>🏋️ Precisa de equipamento</span>
         </label>
         <div class="grid3">
-          <label class="field"><span>Séries pré-def.</span><input type="number" name="series_predefinido" value="${e?.series_predefinido ?? ""}"></label>
-          <label class="field"><span>Reps/Tempo(s) pré-def.</span><input type="number" name="alvo_predefinido" value="${e?.tipo_alvo === "tempo" ? (e?.tempo_predefinido_seg ?? "") : (e?.reps_predefinido ?? "")}"></label>
-          <label class="field"><span>Descanso (s) pré-def.</span><input type="number" name="descanso_predefinido_seg" value="${e?.descanso_predefinido_seg ?? ""}"></label>
+          <label class="field"><span>Séries pré-def.</span><input type="number" name="series_predefinido" value="${e ? (e.series_predefinido ?? "") : 3}"></label>
+          <label class="field"><span>Reps/Tempo(s) pré-def.</span><input type="number" name="alvo_predefinido" value="${e ? (e.tipo_alvo === "tempo" ? (e.tempo_predefinido_seg ?? "") : (e.reps_predefinido ?? "")) : 12}"></label>
+          <label class="field"><span>Descanso (s) pré-def.</span><input type="number" name="descanso_predefinido_seg" value="${e ? (e.descanso_predefinido_seg ?? "") : 120}"></label>
         </div>
         <label class="field"><span>Descrição</span><textarea name="descricao" rows="3">${esc(e?.descricao ?? "")}</textarea></label>
         <label class="field"><span>Vídeo (URL)</span><input name="video_url" value="${esc(e?.video_url ?? "")}"></label>
