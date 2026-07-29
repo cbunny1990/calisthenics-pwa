@@ -341,7 +341,7 @@ async function renderTreinoPlay(id) {
     const serieAtual = Math.min(seriesFeitas + 1, seriesAlvo);
     const concluido = seriesFeitas >= seriesAlvo;
     const { item, exercicio } = entry;
-    const fase = window._playFase === "descanso" && !concluido ? "descanso" : "serie";
+    const fase = window._playFase === "descanso" ? "descanso" : "serie";
 
     const irPara = (novoIndice) => {
       _pararDescansoPlay();
