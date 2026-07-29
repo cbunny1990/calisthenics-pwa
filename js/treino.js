@@ -89,35 +89,7 @@ function _itemAlvoTexto(item) {
 }
 
 function _itemHTML(entry, exercicios) {
-  const { item, exercicio, series } = entry;
-  const timerExercicio = item.tempo_alvo_seg ? tpl`
-    <div class="js-timer" data-role="serie" data-seconds="${item.tempo_alvo_seg}" style="display:flex;align-items:center;gap:8px;margin-top:6px">
-      <span class="muted" style="font-size:12px;width:56px">Exercício</span>
-      <span class="js-timer-display" style="font-family:monospace;font-weight:700;width:48px">${String(Math.floor(item.tempo_alvo_seg / 60)).padStart(2, "0")}:${String(item.tempo_alvo_seg % 60).padStart(2, "0")}</span>
-      <button type="button" class="btn sm js-timer-start">Iniciar</button>
-      <button type="button" class="btn sm ghost js-timer-reset">Reset</button>
-    </div>` : "";
-  const descanso = item.descanso_seg || 90;
-  const timerDescanso = item.fase === "treino" ? tpl`
-    <div class="js-timer" data-role="descanso" data-seconds="${descanso}" style="display:flex;align-items:center;gap:8px;margin-top:6px">
-      <span class="muted" style="font-size:12px;width:56px">Descanso</span>
-      <input type="number" class="js-timer-seconds-input" value="${descanso}" style="width:56px;padding:4px 6px;border-radius:8px;border:1px solid var(--slate-300)">
-      <span class="js-timer-display" style="font-family:monospace;font-weight:700;width:48px">${String(Math.floor(descanso / 60)).padStart(2, "0")}:${String(descanso % 60).padStart(2, "0")}</span>
-      <button type="button" class="btn sm js-timer-start">Iniciar</button>
-      <button type="button" class="btn sm ghost js-timer-reset">Reset</button>
-    </div>` : "";
-  const listaSeries = series.length ? tpl`
-    <ul class="list" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--slate-100)">
-      ${series.map((s) => `
-        <li style="display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--slate-600)">
-          <span>Série ${s.numero}:
-            ${s.reps_feitas != null ? `${s.reps_feitas} reps` : ""}
-            ${s.tempo_seg != null ? ` · ${s.tempo_seg} s` : ""}
-            ${s.peso_extra_kg != null ? ` · +${s.peso_extra_kg} kg` : ""}
-          </span>
-          <button type="button" class="btn-link red" data-apagar-serie="${s.id}" style="font-size:12px">apagar</button>
-        </li>`).join("")}
-    </ul>` : "";
+  const { item, exercicio } = entry;
   return tpl`
     <li class="card" data-item="${item.id}" style="margin-bottom:10px">
       <div style="display:flex;justify-content:space-between;gap:8px">
@@ -142,16 +114,6 @@ function _itemHTML(entry, exercicios) {
         </select>
         <button type="submit" class="btn sm ghost">Trocar</button>
       </form>
-      ${timerExercicio}
-      ${timerDescanso}
-      ${listaSeries}
-      ${item.fase === "treino" ? tpl`
-      <form class="grid3" data-registar="${item.id}" style="gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--slate-100)">
-        <input type="number" name="reps_feitas" placeholder="reps" style="padding:8px">
-        <input type="number" name="tempo_seg" placeholder="s" style="padding:8px">
-        <input type="number" step="0.5" name="peso_extra_kg" placeholder="+kg" style="padding:8px">
-        <button type="submit" class="btn sm" style="grid-column:1/4">Registar série</button>
-      </form>` : ""}
     </li>
   `;
 }
@@ -207,8 +169,6 @@ async function renderTreinoDetail(id) {
       </div>
     `;
 
-    window.iniciarTimers && window.iniciarTimers(app);
-
     const _preencherAlvoPredefinido = () => {
       const form = document.getElementById("form-add-item");
       const exId = Number(document.getElementById("add-item-exercicio").value);
@@ -262,21 +222,6 @@ async function renderTreinoDetail(id) {
       });
     });
 
-    app.querySelectorAll("[data-registar]").forEach((form) => {
-      form.addEventListener("submit", async (ev) => {
-        ev.preventDefault();
-        const itemId = Number(form.dataset.registar);
-        const fd = new FormData(form);
-        const numOrNull = (v) => (v === "" || v == null ? null : Number(v));
-        await registarSerie(itemId, {
-          reps_feitas: numOrNull(fd.get("reps_feitas")),
-          tempo_seg: numOrNull(fd.get("tempo_seg")),
-          peso_extra_kg: numOrNull(fd.get("peso_extra_kg")),
-        });
-        renderTreinoDetail(id);
-      });
-    });
-
     app.querySelectorAll("[data-mover]").forEach((btn) => {
       btn.onclick = async () => {
         const [itemId, dir] = btn.dataset.mover.split(":");
@@ -288,12 +233,6 @@ async function renderTreinoDetail(id) {
       btn.onclick = async () => {
         if (!confirm("Remover este exercício do treino?")) return;
         await apagarItemCascata(Number(btn.dataset.apagarItem));
-        renderTreinoDetail(id);
-      };
-    });
-    app.querySelectorAll("[data-apagar-serie]").forEach((btn) => {
-      btn.onclick = async () => {
-        await DB.apagar("series", Number(btn.dataset.apagarSerie));
         renderTreinoDetail(id);
       };
     });
