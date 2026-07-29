@@ -57,6 +57,13 @@ async function renderTreinoGerarForm() {
         <label class="field"><span>Duração (min)</span>
           <input type="number" name="duracao_min" value="45" min="5" required>
         </label>
+        <label class="field"><span>Equipamento</span>
+          <select name="equipamento">
+            <option value="ambos">Com ou sem equipamento</option>
+            <option value="sem">Só sem equipamento</option>
+            <option value="com">Só com equipamento</option>
+          </select>
+        </label>
         <button class="btn" type="submit">Gerar</button>
       </form>
     </div>
@@ -66,8 +73,11 @@ async function renderTreinoGerarForm() {
     const fd = new FormData(ev.target);
     const categoria = fd.get("categoria");
     const duracaoMin = parseInt(fd.get("duracao_min"), 10) || 45;
+    const equipamento = fd.get("equipamento") || "ambos";
     try {
-      const exercicios = await DB.listar("exercicios");
+      let exercicios = await DB.listar("exercicios");
+      if (equipamento === "sem") exercicios = exercicios.filter((e) => !e.usa_equipamento);
+      else if (equipamento === "com") exercicios = exercicios.filter((e) => e.usa_equipamento);
       const rotulo = (CATEGORIAS_TREINO.find(([v]) => v === categoria) || [])[1] || categoria;
       const treinoId = await DB.criar("treinos", { data: new Date().toISOString().slice(0, 10), nome: rotulo });
       const itens = gerarTreinoItens(exercicios, categoria, duracaoMin);

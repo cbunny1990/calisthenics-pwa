@@ -91,6 +91,7 @@ function exCard(e) {
       <a href="#/exercicios/${e.id}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px">
         <div class="ex-cat">
           <span class="t" style="font-weight:700;font-size:16px">${esc(e.titulo)}</span>
+          ${e.usa_equipamento ? `<span class="tag" title="Precisa de equipamento">🏋️ equip.</span>` : ""}
           <span class="tag marca" style="margin-left:auto">${esc(e.nivel ?? "")}</span>
         </div>
         <div class="ex-imgs">
@@ -111,7 +112,7 @@ async function renderExercicioDetail(id) {
         <a href="#/exercicios" class="btn-link">&larr; Voltar</a>
         <div class="spacer"></div>
         <h2>${esc(e.titulo)}</h2>
-        <div class="pills" style="margin:8px 0"><span class="tag marca">${esc(e.nivel ?? "")}</span><span class="tag">${esc(e.categoria ?? "")}</span></div>
+        <div class="pills" style="margin:8px 0"><span class="tag marca">${esc(e.nivel ?? "")}</span><span class="tag">${esc(e.categoria ?? "")}</span>${e.usa_equipamento ? `<span class="tag">🏋️ precisa de equipamento</span>` : ""}</div>
         <div class="ex-imgs" style="margin-bottom:14px">
           <img src="${e.imagem_url || ""}" alt="${esc(e.titulo)} — início">
           <img src="${e.imagem_url_fim || e.imagem_url || ""}" alt="${esc(e.titulo)} — fim">
@@ -168,6 +169,10 @@ async function renderExercicioForm(id) {
             <option value="tempo" ${e?.tipo_alvo === "tempo" ? "selected" : ""}>Tempo</option>
           </select>
         </label>
+        <label class="field row" style="align-items:center;gap:8px">
+          <input type="checkbox" name="usa_equipamento" style="width:auto" ${e?.usa_equipamento ? "checked" : ""}>
+          <span>🏋️ Precisa de equipamento</span>
+        </label>
         <div class="grid3">
           <label class="field"><span>Séries pré-def.</span><input type="number" name="series_predefinido" value="${e?.series_predefinido ?? ""}"></label>
           <label class="field"><span>Reps/Tempo(s) pré-def.</span><input type="number" name="alvo_predefinido" value="${e?.tipo_alvo === "tempo" ? (e?.tempo_predefinido_seg ?? "") : (e?.reps_predefinido ?? "")}"></label>
@@ -191,6 +196,7 @@ async function renderExercicioForm(id) {
       categoria: fd.get("categoria"),
       nivel: fd.get("nivel"),
       tipo_alvo: tipoAlvo,
+      usa_equipamento: fd.get("usa_equipamento") === "on",
       series_predefinido: fd.get("series_predefinido") ? Number(fd.get("series_predefinido")) : null,
       reps_predefinido: tipoAlvo === "tempo" ? null : alvoPredefinido,
       tempo_predefinido_seg: tipoAlvo === "tempo" ? alvoPredefinido : null,
