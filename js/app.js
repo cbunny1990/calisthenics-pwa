@@ -43,10 +43,15 @@ async function render() {
   app.innerHTML = `<div class="wrap"><p class="muted">A carregar…</p></div>`;
   await semearSeVazio();
   const hash = location.hash || "#/exercicios";
+  if (hash === "#/exercicios/novo") return renderExercicioForm(null);
+  let mEx = hash.match(/^#\/exercicios\/(\d+)\/editar$/);
+  if (mEx) return renderExercicioForm(mEx[1]);
   if (hash.startsWith("#/exercicios/")) return renderExercicioDetail(hash.split("/")[2]);
   if (hash === "#/treinos/gerar") return renderTreinoGerarForm();
   let m = hash.match(/^#\/treinos\/(\d+)\/editar$/);
   if (m) return renderTreinoEditForm(m[1]);
+  m = hash.match(/^#\/treinos\/(\d+)\/play$/);
+  if (m) return renderTreinoPlay(m[1]);
   m = hash.match(/^#\/treinos\/(\d+)$/);
   if (m) return renderTreinoDetail(m[1]);
   if (hash === "#/treinos") return renderTreinos();
@@ -64,6 +69,7 @@ async function renderExercicios() {
     app.innerHTML = tpl`
       <div class="wrap">
         <div class="head"><h2>Biblioteca</h2><span class="muted">${lista.length} de ${todos.length}</span></div>
+        <a href="#/exercicios/novo" class="btn" style="display:block;margin-bottom:14px">+ Novo exercício</a>
         <div class="pills" id="pills" style="margin-bottom:14px">
           <button type="button" class="pill ${!filtro ? "on" : ""}" data-cat="" aria-pressed="${!filtro}">Todos</button>
           ${CATEGORIAS.map(c => `<button type="button" class="pill ${filtro === c ? "on" : ""}" data-cat="${esc(c)}" aria-pressed="${filtro === c}">${esc(c)}</button>`).join("")}
@@ -111,12 +117,107 @@ async function renderExercicioDetail(id) {
         </div>
         ${e.descricao ? `<p>${esc(e.descricao)}</p>` : ""}
         ${e.video_url ? `<div class="spacer"></div><a class="btn ghost" href="${esc(e.video_url)}" target="_blank">▶ Ver vídeo</a>` : ""}
+        <div class="spacer"></div>
+        <dl class="info">
+          <dt>Séries pré-definidas</dt><dd>${e.series_predefinido ?? "—"}</dd>
+          <dt>${e.tipo_alvo === "tempo" ? "Tempo pré-definido" : "Reps pré-definidas"}</dt>
+          <dd>${e.tipo_alvo === "tempo" ? (e.tempo_predefinido_seg ?? "—") + (e.tempo_predefinido_seg ? " s" : "") : (e.reps_predefinido ?? "—")}</dd>
+          <dt>Descanso pré-definido</dt><dd>${e.descanso_predefinido_seg ?? "—"}${e.descanso_predefinido_seg ? " s" : ""}</dd>
+        </dl>
+        <div class="spacer"></div>
+        <a href="#/exercicios/${e.id}/editar" class="btn ghost">✎ Editar</a>
       </div>
     `;
   } catch (err) {
     app.innerHTML = `<div class="wrap"><div class="empty"><div class="big">⚠️</div>Erro ao carregar o exercício.</div></div>`;
     console.error(err);
   }
+}
+
+function _lerFicheiroComoDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function renderExercicioForm(id) {
+  const e = id ? await DB.obter("exercicios", id) : null;
+  if (id && !e) return (location.hash = "#/exercicios");
+  const voltar = id ? `#/exercicios/${id}` : "#/exercicios";
+  app.innerHTML = tpl`
+    <div class="wrap">
+      <a href="${voltar}" class="btn-link">&larr; Voltar</a>
+      <div class="spacer"></div>
+      <h2>${id ? "Editar exercício" : "Novo exercício"}</h2>
+      <div class="spacer"></div>
+      <form class="stack" id="form-exercicio">
+        <label class="field"><span>Título</span><input name="titulo" value="${esc(e?.titulo ?? "")}" required></label>
+        <label class="field"><span>Categoria</span>
+          <select name="categoria">${CATEGORIAS.map((c) => `<option value="${c}" ${e?.categoria === c ? "selected" : ""}>${esc(c)}</option>`).join("")}</select>
+        </label>
+        <label class="field"><span>Nível</span>
+          <select name="nivel">${NIVEIS.map((n) => `<option value="${n}" ${e?.nivel === n ? "selected" : ""}>${esc(n)}</option>`).join("")}</select>
+        </label>
+        <label class="field"><span>Tipo de alvo</span>
+          <select name="tipo_alvo">
+            <option value="reps" ${e?.tipo_alvo !== "tempo" ? "selected" : ""}>Repetições</option>
+            <option value="tempo" ${e?.tipo_alvo === "tempo" ? "selected" : ""}>Tempo</option>
+          </select>
+        </label>
+        <div class="grid3">
+          <label class="field"><span>Séries pré-def.</span><input type="number" name="series_predefinido" value="${e?.series_predefinido ?? ""}"></label>
+          <label class="field"><span>Reps/Tempo(s) pré-def.</span><input type="number" name="alvo_predefinido" value="${e?.tipo_alvo === "tempo" ? (e?.tempo_predefinido_seg ?? "") : (e?.reps_predefinido ?? "")}"></label>
+          <label class="field"><span>Descanso (s) pré-def.</span><input type="number" name="descanso_predefinido_seg" value="${e?.descanso_predefinido_seg ?? ""}"></label>
+        </div>
+        <label class="field"><span>Descrição</span><textarea name="descricao" rows="3">${esc(e?.descricao ?? "")}</textarea></label>
+        <label class="field"><span>Vídeo (URL)</span><input name="video_url" value="${esc(e?.video_url ?? "")}"></label>
+        <label class="field"><span>Imagem início</span><input type="file" name="imagem_url" accept="image/*"></label>
+        <label class="field"><span>Imagem fim (opcional)</span><input type="file" name="imagem_url_fim" accept="image/*"></label>
+        <button class="btn" type="submit">Guardar</button>
+      </form>
+    </div>
+  `;
+  document.getElementById("form-exercicio").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const fd = new FormData(ev.target);
+    const tipoAlvo = fd.get("tipo_alvo");
+    const alvoPredefinido = fd.get("alvo_predefinido") ? Number(fd.get("alvo_predefinido")) : null;
+    const dados = {
+      titulo: fd.get("titulo"),
+      categoria: fd.get("categoria"),
+      nivel: fd.get("nivel"),
+      tipo_alvo: tipoAlvo,
+      series_predefinido: fd.get("series_predefinido") ? Number(fd.get("series_predefinido")) : null,
+      reps_predefinido: tipoAlvo === "tempo" ? null : alvoPredefinido,
+      tempo_predefinido_seg: tipoAlvo === "tempo" ? alvoPredefinido : null,
+      descanso_predefinido_seg: fd.get("descanso_predefinido_seg") ? Number(fd.get("descanso_predefinido_seg")) : null,
+      descricao: fd.get("descricao") || null,
+      video_url: fd.get("video_url") || null,
+      imagem_url: e?.imagem_url ?? null,
+      imagem_url_fim: e?.imagem_url_fim ?? null,
+      progressao_anterior_id: e?.progressao_anterior_id ?? null,
+      notas: e?.notas ?? null,
+    };
+    const fImagem = fd.get("imagem_url");
+    if (fImagem && fImagem.size) dados.imagem_url = await _lerFicheiroComoDataURL(fImagem);
+    const fImagemFim = fd.get("imagem_url_fim");
+    if (fImagemFim && fImagemFim.size) dados.imagem_url_fim = await _lerFicheiroComoDataURL(fImagemFim);
+    try {
+      if (id) {
+        await DB.atualizar("exercicios", { ...dados, id: Number(id) });
+        location.hash = `#/exercicios/${id}`;
+      } else {
+        const novoId = await DB.criar("exercicios", dados);
+        location.hash = `#/exercicios/${novoId}`;
+      }
+    } catch (err) {
+      alert("Não consegui guardar o exercício.");
+      console.error(err);
+    }
+  });
 }
 
 async function renderDados() {

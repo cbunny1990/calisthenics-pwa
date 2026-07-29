@@ -179,14 +179,15 @@ async function renderTreinoDetail(id) {
           <h2>${esc(treino.nome || "Treino")}</h2>
           <p class="muted">${fmtData(treino.data)}</p>
           <div class="actions" style="margin-top:10px">
-            <a href="#/treinos/${treino.id}/editar" class="btn">Editar</a>
+            <a href="#/treinos/${treino.id}/play" class="btn">▶ Modo treino</a>
+            <a href="#/treinos/${treino.id}/editar" class="btn ghost">Editar</a>
             <button type="button" class="btn danger" id="btn-apagar-treino">Apagar</button>
           </div>
         </div>
         ${secoes || `<p class="muted" style="margin-bottom:14px">Ainda sem exercícios neste treino.</p>`}
         <h3 style="font-weight:600;margin-bottom:8px">Adicionar exercício</h3>
         <form class="stack card" id="form-add-item">
-          <select name="exercicio_id" required>
+          <select name="exercicio_id" id="add-item-exercicio" required>
             ${exercicios.map((e) => `<option value="${e.id}">${esc(e.titulo)}</option>`).join("")}
           </select>
           <select name="fase">
@@ -206,6 +207,24 @@ async function renderTreinoDetail(id) {
     `;
 
     window.iniciarTimers && window.iniciarTimers(app);
+
+    const _preencherAlvoPredefinido = () => {
+      const form = document.getElementById("form-add-item");
+      const exId = Number(document.getElementById("add-item-exercicio").value);
+      const ex = exercicios.find((e) => e.id === exId);
+      if (!ex) return;
+      if (ex.series_predefinido != null) form.series_alvo.value = ex.series_predefinido;
+      if (ex.tipo_alvo === "tempo") {
+        if (ex.tempo_predefinido_seg != null) form.tempo_alvo_seg.value = ex.tempo_predefinido_seg;
+        form.reps_alvo.value = "";
+      } else {
+        if (ex.reps_predefinido != null) form.reps_alvo.value = ex.reps_predefinido;
+        form.tempo_alvo_seg.value = "";
+      }
+      if (ex.descanso_predefinido_seg != null) form.descanso_seg.value = ex.descanso_predefinido_seg;
+    };
+    document.getElementById("add-item-exercicio").addEventListener("change", _preencherAlvoPredefinido);
+    _preencherAlvoPredefinido();
 
     document.getElementById("btn-apagar-treino").onclick = async () => {
       if (!confirm("Apagar este treino?")) return;
@@ -279,6 +298,98 @@ async function renderTreinoDetail(id) {
     });
   } catch (err) {
     app.innerHTML = `<div class="wrap"><div class="empty"><div class="big">⚠️</div>Erro ao carregar o treino.</div></div>`;
+    console.error(err);
+  }
+}
+
+// ---------- Modo treino: percorre os exercícios do treino um de cada vez ----------
+
+async function renderTreinoPlay(id) {
+  try {
+    const treino = await DB.obter("treinos", id);
+    if (!treino) return (location.hash = "#/treinos");
+    const entradas = (await itensDoTreino(id)).filter((e) => e.exercicio);
+    if (!entradas.length) {
+      app.innerHTML = `<div class="wrap"><a href="#/treinos/${id}" class="btn-link">&larr; Voltar</a><div class="empty" style="margin-top:14px"><div class="big">🏋️</div>Este treino ainda não tem exercícios.</div></div>`;
+      return;
+    }
+
+    let indice = window._playIndice ?? 0;
+    if (indice >= entradas.length) indice = 0;
+    const entry = entradas[indice];
+    const seriesFeitas = entry.series.length;
+    const seriesAlvo = entry.item.series_alvo || 1;
+    const serieAtual = Math.min(seriesFeitas + 1, seriesAlvo);
+    const concluido = seriesFeitas >= seriesAlvo;
+    const { item, exercicio } = entry;
+
+    const descanso = item.descanso_seg || 90;
+    const timerDescanso = tpl`
+      <div class="js-timer" data-role="descanso" data-seconds="${descanso}" style="display:flex;align-items:center;gap:8px;margin-top:12px">
+        <span class="muted" style="font-size:12px;width:56px">Descanso</span>
+        <span class="js-timer-display" style="font-family:monospace;font-weight:700;font-size:18px;width:60px">${String(Math.floor(descanso / 60)).padStart(2, "0")}:${String(descanso % 60).padStart(2, "0")}</span>
+        <button type="button" class="btn sm js-timer-start">Iniciar</button>
+        <button type="button" class="btn sm ghost js-timer-reset">Reset</button>
+      </div>`;
+
+    app.innerHTML = tpl`
+      <div class="wrap">
+        <a href="#/treinos/${id}" class="btn-link">&larr; Sair do modo treino</a>
+        <div class="spacer"></div>
+        <p class="muted">Exercício ${indice + 1} de ${entradas.length} · ${ROTULOS_FASE[item.fase]}</p>
+        <div class="card" style="margin-top:8px">
+          <h2>${esc(exercicio.titulo)}</h2>
+          ${exercicio.imagem_url || exercicio.imagem_url_fim ? tpl`
+            <div style="display:flex;gap:6px;margin-top:10px">
+              ${exercicio.imagem_url ? tpl`<img src="${exercicio.imagem_url}" alt="início" style="width:${exercicio.imagem_url_fim ? "50%" : "100%"};border-radius:10px;max-height:220px;object-fit:contain;background:var(--slate-100)">` : ""}
+              ${exercicio.imagem_url_fim ? tpl`<img src="${exercicio.imagem_url_fim}" alt="fim" style="width:${exercicio.imagem_url ? "50%" : "100%"};border-radius:10px;max-height:220px;object-fit:contain;background:var(--slate-100)">` : ""}
+            </div>` : ""}
+          <p style="font-size:20px;font-weight:700;margin-top:14px">
+            ${concluido ? "Séries concluídas ✅" : `Série ${serieAtual} de ${seriesAlvo}`}
+          </p>
+          <p class="muted">${_itemAlvoTexto(item)}</p>
+          ${!concluido ? tpl`
+            <button type="button" class="btn" id="btn-concluir-serie" style="margin-top:12px;width:100%">✓ Concluir série</button>
+            ${seriesFeitas > 0 ? timerDescanso : ""}
+          ` : `<button type="button" class="btn" id="btn-proximo" style="margin-top:12px;width:100%">Próximo exercício →</button>`}
+        </div>
+        <div class="row" style="justify-content:space-between;margin-top:14px">
+          <button type="button" class="btn-link" id="btn-anterior" ${indice === 0 ? "disabled" : ""}>&larr; Anterior</button>
+          <button type="button" class="btn-link" id="btn-saltar">Saltar →</button>
+        </div>
+      </div>
+    `;
+
+    window.iniciarTimers && window.iniciarTimers(app);
+    window._playIndice = indice;
+
+    const irPara = (novoIndice) => {
+      if (novoIndice >= entradas.length) {
+        app.innerHTML = `<div class="wrap"><div class="empty"><div class="big">🎉</div>Treino concluído!<div class="spacer"></div><a href="#/treinos/${id}" class="btn">Voltar ao treino</a></div></div>`;
+        window._playIndice = 0;
+        return;
+      }
+      window._playIndice = Math.max(0, novoIndice);
+      renderTreinoPlay(id);
+    };
+
+    const btnConcluir = document.getElementById("btn-concluir-serie");
+    if (btnConcluir) btnConcluir.onclick = async () => {
+      await registarSerie(item.id, {
+        reps_feitas: item.reps_alvo ?? null,
+        tempo_seg: item.tempo_alvo_seg ?? null,
+        peso_extra_kg: null,
+      });
+      if (seriesFeitas + 1 >= seriesAlvo) irPara(indice + 1);
+      else renderTreinoPlay(id);
+    };
+    const btnProximo = document.getElementById("btn-proximo");
+    if (btnProximo) btnProximo.onclick = () => irPara(indice + 1);
+    document.getElementById("btn-saltar").onclick = () => irPara(indice + 1);
+    const btnAnterior = document.getElementById("btn-anterior");
+    if (btnAnterior && indice > 0) btnAnterior.onclick = () => irPara(indice - 1);
+  } catch (err) {
+    app.innerHTML = `<div class="wrap"><div class="empty"><div class="big">⚠️</div>Erro no modo treino.</div></div>`;
     console.error(err);
   }
 }

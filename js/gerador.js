@@ -96,14 +96,16 @@ function gerarTreinoItens(exercicios, categoria, duracaoMin) {
     const ex = pools[cat][posicao[cat]];
     posicao[cat]++;
     const nivel = ex.nivel || "intermedio";
+    const series = ex.series_predefinido ?? SERIES_TREINO;
+    const descanso = ex.descanso_predefinido_seg ?? DESCANSO_TREINO_SEG;
     if (ex.tipo_alvo === "tempo") {
-      const t = _TEMPO_POR_NIVEL_SEG[nivel] ?? 25;
-      itens.push(_item(ex.id, "treino", ordem, SERIES_TREINO, { tempo_seg: t, descanso: DESCANSO_TREINO_SEG }));
-      tempoUsado += _duracaoExercicioSeg(SERIES_TREINO, null, t, DESCANSO_TREINO_SEG);
+      const t = ex.tempo_predefinido_seg ?? (_TEMPO_POR_NIVEL_SEG[nivel] ?? 25);
+      itens.push(_item(ex.id, "treino", ordem, series, { tempo_seg: t, descanso }));
+      tempoUsado += _duracaoExercicioSeg(series, null, t, descanso);
     } else {
-      const r = _REPS_POR_NIVEL[nivel] ?? 10;
-      itens.push(_item(ex.id, "treino", ordem, SERIES_TREINO, { reps: r, descanso: DESCANSO_TREINO_SEG }));
-      tempoUsado += _duracaoExercicioSeg(SERIES_TREINO, r, null, DESCANSO_TREINO_SEG);
+      const r = ex.reps_predefinido ?? (_REPS_POR_NIVEL[nivel] ?? 10);
+      itens.push(_item(ex.id, "treino", ordem, series, { reps: r, descanso }));
+      tempoUsado += _duracaoExercicioSeg(series, r, null, descanso);
     }
     ordem++;
     nExercicios++;
