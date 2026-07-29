@@ -39,6 +39,7 @@ function atualizarNav() {
 }
 
 async function render() {
+  if (typeof _pararDescansoPlay === "function") _pararDescansoPlay();
   atualizarNav();
   app.innerHTML = `<div class="wrap"><p class="muted">A carregar…</p></div>`;
   await semearSeVazio();
