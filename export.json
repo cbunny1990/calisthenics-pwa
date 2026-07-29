@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "exportado_em": "2026-07-29T22:52:41.682Z",
+  "exportado_em": "2026-07-29T23:28:37.719Z",
   "dados": {
     "exercicios": [
       {
@@ -14,7 +14,10 @@
         "categoria": "empurrar",
         "progressao_anterior_id": null,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/knee-push-ups-start.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "intermedio",
@@ -27,7 +30,10 @@
         "categoria": "empurrar",
         "progressao_anterior_id": 1,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "intermedio",
@@ -40,7 +46,10 @@
         "categoria": "empurrar",
         "progressao_anterior_id": 2,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push-Ups_-_Close_Triceps_Position/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "avancado",
@@ -53,7 +62,10 @@
         "categoria": "empurrar",
         "progressao_anterior_id": 3,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/archer-push-ups-start.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "avancado",
@@ -66,7 +78,10 @@
         "categoria": "empurrar",
         "progressao_anterior_id": 4,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/pseudo-planche-push-ups-start.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "elite",
@@ -79,7 +94,10 @@
         "categoria": "empurrar",
         "progressao_anterior_id": 5,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single-Arm_Push-Up/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "iniciante",
@@ -92,7 +110,10 @@
         "categoria": "puxar",
         "progressao_anterior_id": null,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/inverted-row-start.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "iniciante",
@@ -105,7 +126,10 @@
         "categoria": "puxar",
         "progressao_anterior_id": 7,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/negative-pull-ups-start.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "intermedio",
@@ -118,7 +142,10 @@
         "categoria": "puxar",
         "progressao_anterior_id": 8,
         "imagem_url": "https://wger.de/media/exercise-images/475/b0554016-16fd-4dbe-be47-a2a17d16ae0e.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "avancado",
@@ -131,7 +158,10 @@
         "categoria": "puxar",
         "progressao_anterior_id": 9,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/archer-pull-ups-start.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "elite",
@@ -144,7 +174,10 @@
         "categoria": "puxar",
         "progressao_anterior_id": 10,
         "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Onearmpullup.gif",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "iniciante",
@@ -157,7 +190,10 @@
         "categoria": "pernas",
         "progressao_anterior_id": null,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "intermedio",
@@ -170,7 +206,10 @@
         "categoria": "pernas",
         "progressao_anterior_id": 12,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squats/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "intermedio",
@@ -183,7 +222,10 @@
         "categoria": "pernas",
         "progressao_anterior_id": 13,
         "imagem_url": "uploads/552d81d4049e494da35af85c2b3e3a5d.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "avancado",
@@ -196,7 +238,10 @@
         "categoria": "pernas",
         "progressao_anterior_id": 14,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/pistol-squat-start.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "elite",
@@ -209,7 +254,10 @@
         "categoria": "pernas",
         "progressao_anterior_id": 15,
         "imagem_url": "uploads/b6ddcd306a6a444b9b3a33c2e8e9f202.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "iniciante",
@@ -222,7 +270,10 @@
         "categoria": "core",
         "progressao_anterior_id": null,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "tempo_predefinido_seg": 30
       },
       {
         "nivel": "intermedio",
@@ -235,7 +286,10 @@
         "categoria": "core",
         "progressao_anterior_id": 17,
         "imagem_url": "https://wger.de/media/exercise-images/297/b10d3341-baa8-49ab-b462-5b3529389aac.png",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "tempo_predefinido_seg": 30
       },
       {
         "nivel": "intermedio",
@@ -248,7 +302,10 @@
         "categoria": "core",
         "progressao_anterior_id": 18,
         "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/USMC-02371.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "avancado",
@@ -261,7 +318,10 @@
         "categoria": "core",
         "progressao_anterior_id": 19,
         "imagem_url": "uploads/b6500f7cc21340d59c82a699082cef70.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "tempo_predefinido_seg": 30
       },
       {
         "nivel": "elite",
@@ -274,7 +334,10 @@
         "categoria": "core",
         "progressao_anterior_id": 20,
         "imagem_url": "https://raw.githubusercontent.com/sergei-argutin/exercise-dataset/main/images/flat/v-sit-main.webp",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "tempo_predefinido_seg": 30
       },
       {
         "nivel": "iniciante",
@@ -287,7 +350,10 @@
         "categoria": "mobilidade",
         "progressao_anterior_id": null,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Shoulder_Circles/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "intermedio",
@@ -300,7 +366,10 @@
         "categoria": "mobilidade",
         "progressao_anterior_id": 22,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "tempo_predefinido_seg": 30
       },
       {
         "nivel": "iniciante",
@@ -313,7 +382,10 @@
         "categoria": "mobilidade",
         "progressao_anterior_id": null,
         "imagem_url": "uploads/09d716ad6c744e8ebae6dab4a0a55d88.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "iniciante",
@@ -326,7 +398,10 @@
         "categoria": "mobilidade",
         "progressao_anterior_id": null,
         "imagem_url": "https://wger.de/media/exercise-images/1965/03c08a42-dedb-4a46-8d15-acaf497a35a2.png",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "reps_predefinido": 12
       },
       {
         "nivel": "iniciante",
@@ -339,7 +414,10 @@
         "categoria": "mobilidade",
         "progressao_anterior_id": null,
         "imagem_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Floor_Hamstring_Stretch/0.jpg",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "tempo_predefinido_seg": 30
       },
       {
         "nivel": "iniciante",
@@ -352,7 +430,10 @@
         "categoria": "mobilidade",
         "progressao_anterior_id": null,
         "imagem_url": "https://wger.de/media/exercise-images/1873/c0ed299b-6d87-4d90-885d-bb3b5d85f1eb.png",
-        "notas": null
+        "notas": null,
+        "series_predefinido": 3,
+        "descanso_predefinido_seg": 120,
+        "tempo_predefinido_seg": 30
       },
       {
         "id": 28,
@@ -367,10 +448,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 29,
@@ -385,10 +466,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 30,
@@ -403,10 +484,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 31,
@@ -421,10 +502,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 32,
@@ -439,10 +520,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 33,
@@ -457,10 +538,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 34,
@@ -475,10 +556,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 35,
@@ -493,10 +574,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 36,
@@ -511,10 +592,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 37,
@@ -529,10 +610,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 38,
@@ -547,10 +628,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 39,
@@ -565,10 +646,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 40,
@@ -583,10 +664,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 41,
@@ -601,10 +682,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 42,
@@ -619,10 +700,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 43,
@@ -637,10 +718,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 44,
@@ -655,10 +736,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 45,
@@ -673,10 +754,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 46,
@@ -691,10 +772,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 47,
@@ -709,10 +790,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
+        "series_predefinido": 3,
         "reps_predefinido": null,
-        "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "tempo_predefinido_seg": 30,
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 48,
@@ -727,10 +808,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
+        "series_predefinido": 3,
         "reps_predefinido": null,
-        "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "tempo_predefinido_seg": 30,
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 49,
@@ -745,10 +826,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 50,
@@ -763,10 +844,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       },
       {
         "id": 51,
@@ -781,10 +862,10 @@
         "imagem_url": null,
         "imagem_url_fim": null,
         "progressao_anterior_id": null,
-        "series_predefinido": null,
-        "reps_predefinido": null,
+        "series_predefinido": 3,
+        "reps_predefinido": 12,
         "tempo_predefinido_seg": null,
-        "descanso_predefinido_seg": null
+        "descanso_predefinido_seg": 120
       }
     ],
     "treinos": [
