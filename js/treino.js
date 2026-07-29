@@ -346,12 +346,22 @@ async function renderTreinoPlay(id) {
     const irPara = (novoIndice) => {
       _pararDescansoPlay();
       window._playFase = "serie";
+      window._playProximoIndice = null;
       if (novoIndice >= entradas.length) {
         app.innerHTML = `<div class="wrap"><div class="empty"><div class="big">🎉</div>Treino concluído!<div class="spacer"></div><a href="#/treinos/${id}" class="btn">Voltar ao treino</a></div></div>`;
         window._playIndice = 0;
         return;
       }
       window._playIndice = Math.max(0, novoIndice);
+      renderTreinoPlay(id);
+    };
+
+    // Avança para outro exercício sempre passando por um descanso primeiro
+    // (usado por "Saltar" e "Próximo exercício", que antes saltavam o descanso).
+    const irParaComDescanso = (novoIndice) => {
+      if (novoIndice < indice) return irPara(novoIndice); // "Anterior" não precisa de descanso
+      window._playProximoIndice = novoIndice;
+      window._playFase = "descanso";
       renderTreinoPlay(id);
     };
 
@@ -380,7 +390,11 @@ async function renderTreinoPlay(id) {
       const display = document.getElementById("descanso-display");
       const terminarDescanso = () => {
         _pararDescansoPlay();
-        if (serieAtual >= seriesAlvo) irPara(indice + 1);
+        if (window._playProximoIndice != null) {
+          const alvo = window._playProximoIndice;
+          window._playProximoIndice = null;
+          irPara(alvo);
+        } else if (serieAtual >= seriesAlvo) irPara(indice + 1);
         else { window._playFase = "serie"; renderTreinoPlay(id); }
       };
       window._playInterval = setInterval(() => {
@@ -443,8 +457,8 @@ async function renderTreinoPlay(id) {
       renderTreinoPlay(id);
     };
     const btnProximo = document.getElementById("btn-proximo");
-    if (btnProximo) btnProximo.onclick = () => irPara(indice + 1);
-    document.getElementById("btn-saltar").onclick = () => irPara(indice + 1);
+    if (btnProximo) btnProximo.onclick = () => irPara(indice + 1); // séries já cumpridas: descanso já decorreu no formulário
+    document.getElementById("btn-saltar").onclick = () => irParaComDescanso(indice + 1);
     const btnAnterior = document.getElementById("btn-anterior");
     if (btnAnterior && indice > 0) btnAnterior.onclick = () => irPara(indice - 1);
   } catch (err) {
