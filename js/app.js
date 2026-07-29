@@ -234,6 +234,9 @@ async function renderDados() {
         <div class="spacer"></div>
         <button class="btn" id="btn-exportar">⬇ Exportar backup (JSON)</button>
         <div class="spacer"></div>
+        <button class="btn ghost" id="btn-sync-exercicios">🔄 Atualizar biblioteca de exercícios</button>
+        <p class="muted" style="font-size:12px;margin-top:6px">Vai buscar a versão mais recente dos exercícios ao servidor (imagens, vídeos, etc.) sem tocar nos teus treinos e séries já registados.</p>
+        <div class="spacer"></div>
         <label class="field"><span>Importar backup / dados iniciais</span>
           <input type="file" id="input-importar" accept="application/json">
         </label>
@@ -248,6 +251,19 @@ async function renderDados() {
       a.download = `calisthenics-backup-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
+    };
+    document.getElementById("btn-sync-exercicios").onclick = async () => {
+      try {
+        const res = await fetch("export.json?" + Date.now());
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const payload = await res.json();
+        for (const ex of payload.dados.exercicios || []) await DB.atualizar("exercicios", ex);
+        alert("Biblioteca de exercícios atualizada.");
+        renderDados();
+      } catch (err) {
+        alert("Não consegui atualizar — verifica a ligação à internet.");
+        console.error(err);
+      }
     };
     document.getElementById("input-importar").onchange = async (ev) => {
       const file = ev.target.files[0];
