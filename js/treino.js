@@ -98,7 +98,7 @@ function _itemHTML(entry, exercicios) {
       <button type="button" class="btn sm ghost js-timer-reset">Reset</button>
     </div>` : "";
   const descanso = item.descanso_seg || 90;
-  const timerDescanso = item.fase !== "alongamento" ? tpl`
+  const timerDescanso = item.fase === "treino" ? tpl`
     <div class="js-timer" data-role="descanso" data-seconds="${descanso}" style="display:flex;align-items:center;gap:8px;margin-top:6px">
       <span class="muted" style="font-size:12px;width:56px">Descanso</span>
       <input type="number" class="js-timer-seconds-input" value="${descanso}" style="width:56px;padding:4px 6px;border-radius:8px;border:1px solid var(--slate-300)">
@@ -145,12 +145,13 @@ function _itemHTML(entry, exercicios) {
       ${timerExercicio}
       ${timerDescanso}
       ${listaSeries}
+      ${item.fase === "treino" ? tpl`
       <form class="grid3" data-registar="${item.id}" style="gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--slate-100)">
         <input type="number" name="reps_feitas" placeholder="reps" style="padding:8px">
         <input type="number" name="tempo_seg" placeholder="s" style="padding:8px">
         <input type="number" step="0.5" name="peso_extra_kg" placeholder="+kg" style="padding:8px">
         <button type="submit" class="btn sm" style="grid-column:1/4">Registar série</button>
-      </form>
+      </form>` : ""}
     </li>
   `;
 }
