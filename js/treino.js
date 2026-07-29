@@ -131,10 +131,10 @@ function _itemHTML(entry, exercicios) {
           <button type="button" class="x" data-apagar-item="${item.id}">×</button>
         </div>
       </div>
-      ${exercicio && exercicio.imagem_url_fim ? tpl`
+      ${exercicio && (exercicio.imagem_url || exercicio.imagem_url_fim) ? tpl`
         <div style="display:flex;gap:6px;margin-top:8px">
-          <img src="${exercicio.imagem_url || ""}" alt="início" style="width:50%;border-radius:10px;max-height:140px;object-fit:contain;background:var(--slate-100)">
-          <img src="${exercicio.imagem_url_fim}" alt="fim" style="width:50%;border-radius:10px;max-height:140px;object-fit:contain;background:var(--slate-100)">
+          ${exercicio.imagem_url ? tpl`<img src="${exercicio.imagem_url}" alt="início" style="width:${exercicio.imagem_url_fim ? "50%" : "100%"};border-radius:10px;max-height:140px;object-fit:contain;background:var(--slate-100)">` : ""}
+          ${exercicio.imagem_url_fim ? tpl`<img src="${exercicio.imagem_url_fim}" alt="fim" style="width:${exercicio.imagem_url ? "50%" : "100%"};border-radius:10px;max-height:140px;object-fit:contain;background:var(--slate-100)">` : ""}
         </div>` : ""}
       <form class="row" data-substituir="${item.id}" style="gap:6px;margin-top:8px">
         <select name="novo_exercicio_id" style="flex:1;font-size:13px;padding:6px 8px">
