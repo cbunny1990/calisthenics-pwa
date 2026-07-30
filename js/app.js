@@ -26,7 +26,7 @@ async function semearSeVazio() {
 }
 
 function atualizarNav() {
-  const hash = location.hash || "#/exercicios";
+  const hash = location.hash || "#/dashboard";
   let sec = hash;
   if (hash.indexOf("#/exercicios") === 0) sec = "#/exercicios";
   else if (hash.indexOf("#/treinos") === 0) sec = "#/treinos";
@@ -43,7 +43,8 @@ async function render() {
   atualizarNav();
   app.innerHTML = `<div class="wrap"><p class="muted">A carregar…</p></div>`;
   await semearSeVazio();
-  const hash = location.hash || "#/exercicios";
+  const hash = location.hash || "#/dashboard";
+  if (hash === "#/dashboard") return renderDashboard();
   if (hash === "#/exercicios/novo") return renderExercicioForm(null);
   let mEx = hash.match(/^#\/exercicios\/(\d+)\/editar$/);
   if (mEx) return renderExercicioForm(mEx[1]);
