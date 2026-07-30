@@ -120,7 +120,7 @@ function _itemHTML(entry, exercicios) {
         </div>` : ""}
       <form class="row" data-substituir="${item.id}" style="gap:6px;margin-top:8px">
         <select name="novo_exercicio_id" style="flex:1;font-size:13px;padding:6px 8px">
-          ${exercicios.map((e) => `<option value="${e.id}" ${exercicio && e.id === exercicio.id ? "selected" : ""}>${esc(e.titulo)}</option>`).join("")}
+          ${exercicios.filter((e) => !exercicio || e.categoria === exercicio.categoria).map((e) => `<option value="${e.id}" ${exercicio && e.id === exercicio.id ? "selected" : ""}>${esc(e.titulo)}</option>`).join("")}
         </select>
         <button type="submit" class="btn sm ghost">Trocar</button>
       </form>
