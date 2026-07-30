@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "exportado_em": "2026-07-30T06:36:31.888Z",
+  "exportado_em": "2026-07-30T06:42:33.165Z",
   "dados": {
     "exercicios": [
       {
@@ -17,7 +17,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "intermedio",
@@ -33,7 +34,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "intermedio",
@@ -49,7 +51,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "avancado",
@@ -65,7 +68,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "avancado",
@@ -81,7 +85,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "elite",
@@ -97,7 +102,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "iniciante",
@@ -113,7 +119,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": true
       },
       {
         "nivel": "iniciante",
@@ -129,7 +136,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": true
       },
       {
         "nivel": "intermedio",
@@ -145,7 +153,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": true
       },
       {
         "nivel": "avancado",
@@ -161,7 +170,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": true
       },
       {
         "nivel": "elite",
@@ -177,7 +187,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": true
       },
       {
         "nivel": "iniciante",
@@ -193,7 +204,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "intermedio",
@@ -209,7 +221,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "intermedio",
@@ -225,7 +238,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "avancado",
@@ -241,7 +255,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "elite",
@@ -257,7 +272,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "iniciante",
@@ -273,7 +289,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "tempo_predefinido_seg": 30
+        "tempo_predefinido_seg": 30,
+        "usa_equipamento": false
       },
       {
         "nivel": "intermedio",
@@ -289,7 +306,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "tempo_predefinido_seg": 30
+        "tempo_predefinido_seg": 30,
+        "usa_equipamento": false
       },
       {
         "nivel": "intermedio",
@@ -305,7 +323,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": true
       },
       {
         "nivel": "avancado",
@@ -321,7 +340,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "tempo_predefinido_seg": 30
+        "tempo_predefinido_seg": 30,
+        "usa_equipamento": false
       },
       {
         "nivel": "elite",
@@ -337,7 +357,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "tempo_predefinido_seg": 30
+        "tempo_predefinido_seg": 30,
+        "usa_equipamento": false
       },
       {
         "nivel": "iniciante",
@@ -353,7 +374,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "intermedio",
@@ -369,7 +391,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "tempo_predefinido_seg": 30
+        "tempo_predefinido_seg": 30,
+        "usa_equipamento": false
       },
       {
         "nivel": "iniciante",
@@ -385,7 +408,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "iniciante",
@@ -401,7 +425,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "reps_predefinido": 12
+        "reps_predefinido": 12,
+        "usa_equipamento": false
       },
       {
         "nivel": "iniciante",
@@ -417,7 +442,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "tempo_predefinido_seg": 30
+        "tempo_predefinido_seg": 30,
+        "usa_equipamento": false
       },
       {
         "nivel": "iniciante",
@@ -433,7 +459,8 @@
         "notas": null,
         "series_predefinido": 3,
         "descanso_predefinido_seg": 120,
-        "tempo_predefinido_seg": 30
+        "tempo_predefinido_seg": 30,
+        "usa_equipamento": false
       },
       {
         "id": 28,
