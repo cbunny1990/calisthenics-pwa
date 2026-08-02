@@ -54,6 +54,12 @@ async function renderTreinoGerarForm() {
             ${CATEGORIAS_TREINO.map(([v, r]) => `<option value="${esc(v)}">${esc(r)}</option>`).join("")}
           </select>
         </label>
+        <label class="field"><span>Nível</span>
+          <select name="nivel">
+            <option value="todos">Todos os níveis</option>
+            ${NIVEIS.map((n) => `<option value="${esc(n)}">${esc(n)}</option>`).join("")}
+          </select>
+        </label>
         <label class="field"><span>Duração (min)</span>
           <input type="number" name="duracao_min" value="60" min="5" required>
         </label>
@@ -74,12 +80,17 @@ async function renderTreinoGerarForm() {
     const categoria = fd.get("categoria");
     const duracaoMin = parseInt(fd.get("duracao_min"), 10) || 45;
     const equipamento = fd.get("equipamento") || "ambos";
+    const nivel = fd.get("nivel") || "todos";
     try {
       let exercicios = await DB.listar("exercicios");
       if (equipamento === "sem") exercicios = exercicios.filter((e) => !e.usa_equipamento);
       else if (equipamento === "com") exercicios = exercicios.filter((e) => e.usa_equipamento);
+      // O nível filtra só o treino principal — mobilidade (aquecimento e alongamento)
+      // é toda de nível iniciante e tem de sobreviver ao filtro.
+      if (nivel !== "todos") exercicios = exercicios.filter((e) => e.categoria === "mobilidade" || e.nivel === nivel);
       const rotulo = (CATEGORIAS_TREINO.find(([v]) => v === categoria) || [])[1] || categoria;
-      const treinoId = await DB.criar("treinos", { data: new Date().toISOString().slice(0, 10), nome: rotulo });
+      const nome = nivel === "todos" ? rotulo : `${rotulo} · ${nivel}`;
+      const treinoId = await DB.criar("treinos", { data: new Date().toISOString().slice(0, 10), nome });
       const itens = gerarTreinoItens(exercicios, categoria, duracaoMin);
       for (const it of itens) await DB.criar("treino_itens", { ...it, treino_id: treinoId });
       location.hash = "#/treinos/" + treinoId;

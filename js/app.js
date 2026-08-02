@@ -104,13 +104,47 @@ function exCard(e) {
   `;
 }
 
+// Deslizar o dedo para o lado (ou usar as setas) salta para o exercício
+// seguinte/anterior da mesma lista, sem ter de voltar à biblioteca.
+function _ligarSwipe(elemento, aoEsquerda, aoDireita) {
+  let x0 = null, y0 = null;
+  elemento.addEventListener("touchstart", (ev) => {
+    x0 = ev.changedTouches[0].clientX;
+    y0 = ev.changedTouches[0].clientY;
+  }, { passive: true });
+  elemento.addEventListener("touchend", (ev) => {
+    if (x0 === null) return;
+    const dx = ev.changedTouches[0].clientX - x0;
+    const dy = ev.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return; // gesto vertical: é scroll
+    (dx < 0 ? aoEsquerda : aoDireita)();
+  }, { passive: true });
+}
+
 async function renderExercicioDetail(id) {
   try {
-    const e = await DB.obter("exercicios", id);
+    // Mesma ordenação e mesmo filtro da biblioteca, para o "seguinte" ser
+    // mesmo o cartão que estava a seguir na lista de onde ele veio.
+    const todos = (await DB.listar("exercicios")).sort((a, b) => a.titulo.localeCompare(b.titulo, "pt"));
+    const filtro = window._filtroCategoria || null;
+    const lista = filtro ? todos.filter((x) => x.categoria === filtro) : todos;
+    const idx = lista.findIndex((x) => x.id === Number(id));
+    const e = idx >= 0 ? lista[idx] : await DB.obter("exercicios", id);
     if (!e) { app.innerHTML = `<div class="wrap"><div class="empty">Exercício não encontrado.</div></div>`; return; }
+    const anterior = idx > 0 ? lista[idx - 1] : null;
+    const seguinte = idx >= 0 && idx < lista.length - 1 ? lista[idx + 1] : null;
+    const irPara = (alvo) => { if (alvo) location.hash = `#/exercicios/${alvo.id}`; };
     app.innerHTML = tpl`
       <div class="wrap">
-        <a href="#/exercicios" class="btn-link">&larr; Voltar</a>
+        <div class="row" style="justify-content:space-between;align-items:center">
+          <a href="#/exercicios" class="btn-link">&larr; Voltar</a>
+          ${idx >= 0 ? tpl`<span class="muted" style="font-size:12px">${idx + 1} de ${lista.length}</span>` : ""}
+          <span class="row" style="gap:10px">
+            <button type="button" class="btn-link" id="btn-ex-anterior" ${anterior ? "" : "disabled"} aria-label="Exercício anterior">‹</button>
+            <button type="button" class="btn-link" id="btn-ex-seguinte" ${seguinte ? "" : "disabled"} aria-label="Exercício seguinte">›</button>
+          </span>
+        </div>
         <div class="spacer"></div>
         <h2>${esc(e.titulo)}</h2>
         <div class="pills" style="margin:8px 0"><span class="tag marca">${esc(e.nivel ?? "")}</span><span class="tag">${esc(e.categoria ?? "")}</span>${e.usa_equipamento ? `<span class="tag">🏋️ precisa de equipamento</span>` : ""}</div>
@@ -131,6 +165,9 @@ async function renderExercicioDetail(id) {
         <a href="#/exercicios/${e.id}/editar" class="btn ghost">✎ Editar</a>
       </div>
     `;
+    document.getElementById("btn-ex-anterior").onclick = () => irPara(anterior);
+    document.getElementById("btn-ex-seguinte").onclick = () => irPara(seguinte);
+    _ligarSwipe(app.querySelector(".wrap"), () => irPara(seguinte), () => irPara(anterior));
   } catch (err) {
     app.innerHTML = `<div class="wrap"><div class="empty"><div class="big">⚠️</div>Erro ao carregar o exercício.</div></div>`;
     console.error(err);
